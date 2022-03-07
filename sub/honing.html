@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>LostArkTools</title>
+        <link rel="stylesheet" href="../style.css">
+        <script type="text/javascript" src="honing.js"></script>
+    </head>
+
+    <body>
+        <div class="main">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../resources/logo.png">
+                </a>
+            </div>
+            <div class="honing_price">
+                <table id="honing_price">
+                    <tr>
+                        <td><img src="../resources/_destruction.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_destruction" name="_destruction"></td>
+                        <td><img src="../resources/_shard.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_shard" name="_shard"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../resources/_guardian.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_guardian" name="_guardian"></td>
+                        <td><img src="../resources/_grace.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_grace" name="_grace"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../resources/_leapstone.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_leapstone" name="_leapstone"></td>
+                        <td><img src="../resources/_blessing.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_blessing" name="_blessing"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../resources/_fusion.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_fusion" name="_fusion"></td>
+                        <td><img src="../resources/_protection.png" style="width:75px; height:75px"></td>
+                        <td><input type="number" id="_protection" name="_protection"></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;Rarity<br>&nbsp;&nbsp;(E or L)</td>
+                        <td><input type="text" id="_rarity" name="_rarity"></td>
+                        <td>&nbsp;&nbsp;&nbsp;Target<br>Honing LvL</td>
+                        <td><input type="number" id="_level" name="_level"></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;Target<br>Confidence</td>
+                        <td><input type="number" id="_confidence" name="_confidence"></td>
+                        <td>&nbsp;</td>
+                        <td><button1 type="button" id="_submit" name="_submit" onclick="calculate()">calculate</button1></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="result">
+                <table id="result" style="border-spacing: 5px;">
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

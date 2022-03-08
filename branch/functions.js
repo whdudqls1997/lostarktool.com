@@ -1,4 +1,3 @@
-var index;
 const honing = new Map();
 const epicarm = new Map();
 const epicwep = new Map();
@@ -15,9 +14,11 @@ function calculate(){
     index = 0;
     go(document.getElementById("_rarity").value, document.getElementById("_level").value, document.getElementById("_confidence").value, parsePrice());
 
-    var row = document.getElementById("result").insertRow(index);
-    var cell = row.insertCell(0);
-    cell.innerHTML = ">>> Calculation Finished"
+    var data = document.getElementById("result").value;
+    document.getElementById("result").innerHTML = data + ">>> Calculation Finished \n";
+    
+    var data = document.getElementById("result").value;
+    document.getElementById("result").innerHTML = data + ">>> Try manipulating target confidence rate for different results!";
 }
 
 function cleanup(){
@@ -26,32 +27,32 @@ function cleanup(){
 }
 
 function paramCheck(){
-    if(document.getElementById("_destruction").value == "" ||
-        document.getElementById("_guardian").value == "" ||
-        document.getElementById("_leapstone").value == "" ||
-        document.getElementById("_fusion").value == "" ||
-        document.getElementById("_shard").value == "" ||
-        document.getElementById("_grace").value == "" ||
-        document.getElementById("_blessing").value == "" ||
-        document.getElementById("_protection").value == ""){
+    if(document.getElementById("_destruction").value === "" ||
+        document.getElementById("_guardian").value === "" ||
+        document.getElementById("_leapstone").value === "" ||
+        document.getElementById("_fusion").value === "" ||
+        document.getElementById("_shard").value === "" ||
+        document.getElementById("_grace").value === "" ||
+        document.getElementById("_blessing").value === "" ||
+        document.getElementById("_protection").value === ""){
         alert("Material prices cannot be empty.\nAt least put in 0");
         return true;
     }
 
     const rarity = document.getElementById("_rarity").value;
-    if(rarity != "E" && rarity != "L" && rarity != "e" && rarity != "l"){
+    if(rarity !== "E" && rarity !== "L" && rarity !== "e" && rarity !== "l"){
         alert("Invalid input on Rarity.\nUse E (for epic) and L (for legendary).");
         return true;
     }
 
     const level = document.getElementById("_level").value;
-    if(level <= 6 || ((rarity == "E" || rarity == "e") && 15 < level) || 20 < level){
+    if(level <= 6 || ((rarity === "E" || rarity === "e") && 15 < level) || 20 < level){
         alert("Invalid input on target honing level.\nEpic gear : 7 - 15\nLeggo gear : 7 - 20");
         return true;
     }
 
     const confidence = document.getElementById("_confidence").value;
-    if(confidence == "" || confidence >= 100 || confidence < 0){
+    if(confidence === "" || confidence >= 100 || confidence < 0){
         alert("Invalid input on confidence.\nConfidence cannot exceed 100%, or be negative, or be empty.");
         return true;
     }
@@ -132,10 +133,11 @@ function parsePrice(){
     temp.push(document.getElementById("_guardian").value);
     temp.push(document.getElementById("_leapstone").value);
     temp.push(document.getElementById("_fusion").value);
-    temp.push(document.getElementById("_shard").value);
+    temp.push(document.getElementById("_shard").value / 500);
     temp.push(document.getElementById("_grace").value);
     temp.push(document.getElementById("_blessing").value);
     temp.push(document.getElementById("_protection").value);
+    console.log(temp[4] + " / " + temp[4] * 500);
     return temp;
 }
 
@@ -143,7 +145,7 @@ function go(rarity, level, confidence, prices){
     var lvl = honing.get(Number(level));
     var conf = 1.0 - (confidence/100.0);
     var arm; var wep; 
-    if(rarity == "e" || rarity == "E"){ 
+    if(rarity === "e" || rarity === "E"){ 
         arm = epicarm.get(Number(level));
         wep = epicwep.get(Number(level)); 
     }else{ 
@@ -152,28 +154,20 @@ function go(rarity, level, confidence, prices){
     }
 
     var baseArm = prices[1] * arm[0] + prices[2] * arm[1] + prices[3] * arm[2] + prices[4] * arm[3] + arm[4];
-    var row = document.getElementById("result").insertRow(index);
-    var cell = row.insertCell(0);
-    cell.innerHTML = ">>> Searching for best armor honing method"
-    index = index + 1;
+    var data = document.getElementById("result").value;
+    document.getElementById("result").innerHTML = data + ">>> Searching for best armor honing method" + "\n";
     scan(baseArm, prices, lvl, conf);
 
-    row = document.getElementById("result").insertRow(index);
-    cell = row.insertCell(0);
-    cell.innerHTML = ""
-    index = index + 1;
+    var data = document.getElementById("result").value;
+    document.getElementById("result").innerHTML = data + "\n";
 
     var baseWep = prices[0] * wep[0] + prices[2] * wep[1] + prices[3] * wep[2] + prices[4] * wep[3] + wep[4];
-    row = document.getElementById("result").insertRow(index);
-    cell = row.insertCell(0);
-    cell.innerHTML = ">>> Searching for best weapon honing method"
-    index = index + 1;
+    var data = document.getElementById("result").value;
+    document.getElementById("result").innerHTML = data + ">>> Searching for best weapon honing method" + "\n";
     scan(baseWep, prices, lvl, conf);
 
-    row = document.getElementById("result").insertRow(index);
-    cell = row.insertCell(0);
-    cell.innerHTML = ""
-    index = index + 1;
+    var data = document.getElementById("result").value;
+    document.getElementById("result").innerHTML = data + "\n";
 }
 
 function scan(base, prices, lvl, conf){
@@ -185,10 +179,10 @@ function scan(base, prices, lvl, conf){
                 var attempt = scanHelper(0, 1, lvl, conf, (k * lvl[4] + j * lvl[5] + i * lvl[6]));
                 const total = attempt * ((k * prices[5] + j * prices[6] + i * prices[7]) + base);
                 if(total < min){
-                    var row = document.getElementById("result").insertRow(index);
-                    var cell = row.insertCell(0);
-                    cell.innerHTML = "Expected Attempts : " + attempt + " | Total Cost : " + Math.round(total) + " G | Breath : " + "Grace (" + k + ") , Blessing (" + j + ") , Protection (" + i + ")";
-                    index = index + 1;
+                    var data = document.getElementById("result").value;
+                    document.getElementById("result").innerHTML = data + 
+                            "Expected Attempts : " + attempt + " | Total Cost : " + Math.round(total) + " G | " + "Grace (" + k + ") , Blessing (" + j + ") , Protection (" + i + ")"
+                            + "\n";
                     min = total;
                 }
             }

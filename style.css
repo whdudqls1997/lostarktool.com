@@ -1,38 +1,11 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
 }
-
 a{
     color: inherit;
     text-decoration: none;
 }
-
-span{
-    margin: 4rem;
-}
-span:first-of-type{
-    margin-left: 0;
-}
-span:last-of-type{
-    margin-right: 0;
-}
-
-table{
-    color: white;
-    border-spacing: 2em;
-}
-
-input{
-    width: 150px;
-    height: 40px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-
 .main{
     width: 100%;
     height: 100vh;
@@ -40,31 +13,51 @@ input{
     overflow: hidden;
     background: black;
 }
+span + span{
+    margin: 4rem;
+}
 
-nav{
+/* index.html style */
+.logo {}
+.menu {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.honing_price{
-    position: absolute;
-    top: 30%;
-    left: 15%;
-    transform: translate(-15%, -15%);
+/* honing style */
+.honing_price {
+   width: 20%;
+   height: 75%;
+   position: absolute;
+   top: 15%;
+   flex-shrink: 0;
+   overflow: hidden;
+   overflow-y: scroll;
 }
-
-.result{
-    position: absolute;
-    top: 25%;
-    left: 58%;
-    transform: translate(-15%, -15%);
-    color: blue;
+.row {
+    display: flex;
+    margin: 20px;
 }
-
-button1{
+.column {
+    flex: 50%;
+}
+.instruction {
+    position: absolute;
+    top: 15%;
+    left: 22%;
+}
+.instruction label{
+    border-top-color: white;
+}
+button{
+    position: absolute;
+    top: 62%;
+    left: 22%;
+    
     color: black;
+    text-align: center;
     background-color: white;
     padding: 9px 42px;
 
@@ -72,8 +65,22 @@ button1{
     border-radius: 4px;
     transition-duration: 0.4s;
 }
-
-button1:hover{
+button:hover{
     background-color: tomato;
     color: white;
+}
+.honing_result {
+    position: absolute;
+    top: 15%;
+    left: 55%;
+    
+    width: 40%;
+    height: 45%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.honing_result textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
 }

@@ -78,22 +78,22 @@ function makeMap(){
 
     epicarm.set(7, [156, 4, 2, 42, 70]);
     epicarm.set(8, [156, 4, 2, 42, 70]);
-    epicarm.set(9, [156, 4, 2, 42, 70]); //?????????
-    epicarm.set(10, [156, 4, 2, 42, 70]); 
-    epicarm.set(11, [156, 4, 2, 42, 70]);
+    epicarm.set(9, [156, 4, 2, 42, 70]);
+    epicarm.set(10, [192, 6, 4, 50, 70]); 
+    epicarm.set(11, [192, 6, 4, 50, 70]);
     epicarm.set(12, [192, 6, 4, 50, 70]);
-    epicarm.set(13, [192, 6, 4, 50, 70]);
-    epicarm.set(14, [192, 6, 4, 50, 70]);
+    epicarm.set(13, [228, 6, 4, 60, 70]);
+    epicarm.set(14, [228, 8, 4, 60, 70]);
     epicarm.set(15, [228, 8, 4, 60, 70]);
 
     epicwep.set(7, [258, 8, 4, 60, 120]);
     epicwep.set(8, [258, 8, 4, 60, 120]);
     epicwep.set(9, [258, 8, 4, 60, 120]);
-    epicwep.set(10, [258, 8, 4, 60, 120]);
-    epicwep.set(11, [258, 8, 4, 60, 120]);
+    epicwep.set(10, [320, 10, 4, 75, 120]);
+    epicwep.set(11, [320, 10, 4, 74, 120]);
     epicwep.set(12, [320, 10, 4, 74, 120]);
-    epicwep.set(13, [320, 10, 4, 74, 120]);
-    epicwep.set(14, [320, 10, 4, 74, 120]);
+    epicwep.set(13, [380, 10, 6, 88, 120]);
+    epicwep.set(14, [380, 12, 6, 88, 120]);
     epicwep.set(15, [380, 12, 6, 88, 120]);
 
     leggoarm.set(7, [404, 8, 6, 108, 170]);

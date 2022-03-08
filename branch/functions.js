@@ -181,8 +181,8 @@ function scan(base, prices, lvl, conf){
                 if(total < min){
                     var data = document.getElementById("result").value;
                     document.getElementById("result").innerHTML = data + 
-                            "Expected Attempts : " + attempt + " | Total Cost : " + Math.round(total) + " G | " + "Grace (" + k + ") , Blessing (" + j + ") , Protection (" + i + ")"
-                            + "\n";
+                            "Expected Attempts : " + attempt + " | Total Cost : " + Math.round(total) + " G | Using " + "Grace (" + k + ") , Blessing (" + j + ") , Protection (" + i + ")"
+                            + " per attempt\n";
                     min = total;
                 }
             }

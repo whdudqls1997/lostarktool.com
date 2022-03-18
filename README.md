@@ -23,5 +23,5 @@ Or could just take the time and build a mega data structure to store all best pa
 
 **Update (03-18)**
 Creating a mega data structure seems like the most accurate way to approach this.
-There aren't *too* many datas, but just **a lot** of datas.
+There aren't *too* many data, but just **a lot** of data.
 Running minimax algorithm multiple times to figure out and map all routes.

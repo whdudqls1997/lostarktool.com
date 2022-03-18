@@ -1,8 +1,8 @@
-#Project LostArkTool
+# Project LostArkTool
 
 Currently hosted under https://lostarktool.com
 
-##Honing Calculation
+## Honing Calculation
 
 Uses realistic probability model to calculate and find the best method.
 Takes a confidence level (%), and locates the cheapest (and near cheapest) 
@@ -14,7 +14,7 @@ at least once out of those 3 attemps will succeed at a 70% chance.
 
 Confidence level of 70 ~ 90 is recommended.
 
-##Ability Stone Simulator
+## Ability Stone Simulator
 
 **Currently under update**
 Using a combination of EM and regression, finds the best path to solution amongst 2^30 nodes.

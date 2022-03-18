@@ -16,12 +16,12 @@ Confidence level of 70 ~ 90 is recommended.
 
 ## Ability Stone Simulator
 
-**Currently under update**\n
+**Currently under update**
 Using a combination of EM and regression, finds the best path to solution amongst 2^30 nodes.
 Currently fixing the EM model's transition rate (also thinking about approaching this with deep learning).
 Or could just take the time and build a mega data structure to store all best paths.
 
-**Update (03-18)**\n
+**Update (03-18)**
 Creating a mega data structure seems like the most accurate way to approach this.
 There aren't *too* many datas, but just **a lot** of datas.
 Running minimax algorithm multiple times to figure out and map all routes.

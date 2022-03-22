@@ -154,8 +154,6 @@ function go(rarity, level, confidence, prices){
 	if(document.getElementById("_additional").value != "")
 		lvl[0] = lvl[0] + document.getElementById("_additional").value/100;
 	
-	console.log(lvl[0]);
-	
     var conf = 1.0 - (confidence/100.0);
     var arm; var wep;
 	

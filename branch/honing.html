@@ -125,6 +125,34 @@
                              border: none; border-bottom: 2px solid whitesmoke; text-align: center;">
                     </div>
                 </div>
+				<div class="row">
+                    <div class="column">
+                        <img src="../resource/honing/book_weapon.png" alt 
+                             style="width:70px; height:60px; 
+                             position:relative; top:50%; left:50%; transform: translate(-50%, -50%);">
+                    </div>
+                    <div class="column">
+                        <input type="number" id="_bookWeapon" name="_bookWeapon" placeholder="Enter price of 1 Metallurgy"
+                             style="width:175px; height:35px; 
+                             position:relative; top:50%; left:50%; transform: translate(-50%, -50%);
+                             color: white; background-color: black;
+                             border: none; border-bottom: 2px solid whitesmoke; text-align: center;">
+                    </div>
+                </div>
+				<div class="row">
+                    <div class="column">
+                        <img src="../resource/honing/book_armor.png" alt 
+                             style="width:70px; height:60px; 
+                             position:relative; top:50%; left:50%; transform: translate(-50%, -50%);">
+                    </div>
+                    <div class="column">
+                        <input type="number" id="_bookArmor" name="_bookArmor" placeholder="Enter price of 1 Tailoring"
+                             style="width:175px; height:35px; 
+                             position:relative; top:50%; left:50%; transform: translate(-50%, -50%);
+                             color: white; background-color: black;
+                             border: none; border-bottom: 2px solid whitesmoke; text-align: center;">
+                    </div>
+                </div>
                 <div class="row">
                     <div class="column">
                         <p style="position:relative; top:50%; left:50%; 
@@ -147,6 +175,20 @@
                     </div>
                     <div class="column">
                         <input type="number" id="_level" name="_level" placeholder="if 14->15, enter 15"
+                             style="width:175px; height:35px; 
+                             position:relative; top:50%; left:50%; transform: translate(-50%, -50%);
+                             color: white; background-color: black;
+                             border: none; border-bottom: 2px solid whitesmoke; text-align: center;">
+                    </div>
+                </div>
+				<div class="row">
+                    <div class="column">
+                        <p style="position:relative; top:50%; left:50%; 
+                           transform: translate(-50%, -50%); color:white;
+                           text-align: center">Additional<br>Success Rate (%)</p>
+                    </div>
+                    <div class="column">
+                        <input type="number" id="_additional" name="_additional" placeholder="Leave empty if no research"
                              style="width:175px; height:35px; 
                              position:relative; top:50%; left:50%; transform: translate(-50%, -50%);
                              color: white; background-color: black;
@@ -181,7 +223,9 @@
                     > For target honing level, enter the level you want to reach.<br>
                     > If you want to get from +13 to +14, enter 14.<br>
                     > Supports 7~15 for epic, and 7~20 for legendary gear.<br><br>
-                    > For confidence rate, 70~90 is recommended.<br><br>
+					> Additional success rate is for those who have completed the SH research.<br>
+					> It's usually 10%, so if you did the research, enter 10, otherwise, enter 0.<br><br>
+					> For target confidence, 70~90% is recommended.<br><br>
                     After filling out the form, press the "Calculate" button below.
                 </label>
             </div>

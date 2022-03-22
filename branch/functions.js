@@ -35,7 +35,7 @@ function paramCheck(){
         document.getElementById("_grace").value === "" ||
         document.getElementById("_blessing").value === "" ||
         document.getElementById("_protection").value === ""){
-        alert("Material prices cannot be empty.\nAt least put in 0");
+        alert("Material prices cannot be empty (except for honing books).\nEnter 0 if you don't want to account for it");
         return true;
     }
 
@@ -61,20 +61,20 @@ function paramCheck(){
 }
 
 function makeMap(){
-    honing.set(7, [0.60, 12, 6, 2, 0.0167, 0.0333, 0.10]);
-    honing.set(8, [0.45, 12, 6, 2, 0.0125, 0.0250, 0.075]);
-    honing.set(9, [0.30, 12, 6, 2, 0.0084, 0.0167, 0.05]);
-    honing.set(10, [0.30, 12, 6, 2, 0.0084, 0.0167, 0.05]);
-    honing.set(11, [0.30, 12, 6, 2, 0.0084, 0.0167, 0.05]);
-    honing.set(12, [0.15, 24, 12, 4, 0.0021, 0.0042, 0.0125]);
-    honing.set(13, [0.15, 24, 12, 4, 0.0021, 0.0042, 0.0125]);
-    honing.set(14, [0.15, 24, 12, 4, 0.0021, 0.0042, 0.0125]);
-    honing.set(15, [0.10, 24, 12, 2, 0.0014, 0.0028, 0.0083]);
-    honing.set(16, [0.10, 24, 12, 2, 0.0014, 0.0028, 0.0083]);
-    honing.set(17, [0.10, 24, 12, 2, 0.0014, 0.0028, 0.0083]);
-    honing.set(18, [0.05, 36, 18, 6, 0.0005, 0.0009, 0.0028]);
-    honing.set(19, [0.05, 36, 18, 6, 0.0005, 0.0009, 0.0028]);
-    honing.set(20, [0.03, 36, 18, 6, 0.0003, 0.0006, 0.0017]);
+    honing.set(7, [0.60, 12, 6, 2, 0.0167, 0.0333, 0.10, 1]);
+    honing.set(8, [0.45, 12, 6, 2, 0.0125, 0.0250, 0.075, 1]);
+    honing.set(9, [0.30, 12, 6, 2, 0.0084, 0.0167, 0.05, 1]);
+    honing.set(10, [0.30, 12, 6, 2, 0.0084, 0.0167, 0.05, 1]);
+    honing.set(11, [0.30, 12, 6, 2, 0.0084, 0.0167, 0.05, 1]);
+    honing.set(12, [0.15, 24, 12, 4, 0.0021, 0.0042, 0.0125, 1]);
+    honing.set(13, [0.15, 24, 12, 4, 0.0021, 0.0042, 0.0125, 1]);
+    honing.set(14, [0.15, 24, 12, 4, 0.0021, 0.0042, 0.0125, 1]);
+    honing.set(15, [0.10, 24, 12, 2, 0.0014, 0.0028, 0.0083, 1]);
+    honing.set(16, [0.10, 24, 12, 2, 0.0014, 0.0028, 0.0083, 0]);
+    honing.set(17, [0.10, 24, 12, 2, 0.0014, 0.0028, 0.0083, 0]);
+    honing.set(18, [0.05, 36, 18, 6, 0.0005, 0.0009, 0.0028, 0]);
+    honing.set(19, [0.05, 36, 18, 6, 0.0005, 0.0009, 0.0028, 0]);
+    honing.set(20, [0.03, 36, 18, 6, 0.0003, 0.0006, 0.0017, 0]);
 
     epicarm.set(7, [156, 4, 2, 42, 70]);
     epicarm.set(8, [156, 4, 2, 42, 70]);
@@ -137,12 +137,25 @@ function parsePrice(){
     temp.push(document.getElementById("_grace").value);
     temp.push(document.getElementById("_blessing").value);
     temp.push(document.getElementById("_protection").value);
-    console.log(temp[4] + " / " + temp[4] * 500);
+    if(document.getElementById("_bookWeapon").value == "")
+		temp.push(999999999);
+	else
+		temp.push(document.getElementById("_bookWeapon").value);
+	if(document.getElementById("_bookArmor").value == "")
+		temp.push(999999999);
+	else
+		temp.push(document.getElementById("_bookArmor").value);
     return temp;
 }
 
 function go(rarity, level, confidence, prices){
     var lvl = honing.get(Number(level));
+	
+	if(document.getElementById("_additional").value != "")
+		lvl[0] = lvl[0] + document.getElementById("_additional").value/100;
+	
+	console.log(lvl[0]);
+	
     var conf = 1.0 - (confidence/100.0);
     var arm; var wep; 
     if(rarity === "e" || rarity === "E"){ 
@@ -156,7 +169,7 @@ function go(rarity, level, confidence, prices){
     var baseArm = prices[1] * arm[0] + prices[2] * arm[1] + prices[3] * arm[2] + prices[4] * arm[3] + arm[4];
     var data = document.getElementById("result").value;
     document.getElementById("result").innerHTML = data + ">>> Searching for best armor honing method" + "\n";
-    scan(baseArm, prices, lvl, conf);
+    scan(baseArm, prices, lvl, conf, 0);
 
     var data = document.getElementById("result").value;
     document.getElementById("result").innerHTML = data + "\n";
@@ -164,27 +177,35 @@ function go(rarity, level, confidence, prices){
     var baseWep = prices[0] * wep[0] + prices[2] * wep[1] + prices[3] * wep[2] + prices[4] * wep[3] + wep[4];
     var data = document.getElementById("result").value;
     document.getElementById("result").innerHTML = data + ">>> Searching for best weapon honing method" + "\n";
-    scan(baseWep, prices, lvl, conf);
+    scan(baseWep, prices, lvl, conf, 1);
 
     var data = document.getElementById("result").value;
     document.getElementById("result").innerHTML = data + "\n";
 }
 
-function scan(base, prices, lvl, conf){
+function scan(base, prices, lvl, conf, indi){
     var min = Number.MAX_VALUE;
 
-    for(i = 0; i < lvl[3]; i++){
-        for(j = 0; j < lvl[2]; j++){
-            for(k = 0; k < lvl[1]; k++){
-                var attempt = scanHelper(0, 1, lvl, conf, (k * lvl[4] + j * lvl[5] + i * lvl[6]));
-                const total = attempt * ((k * prices[5] + j * prices[6] + i * prices[7]) + base);
-                if(total < min){
-                    var data = document.getElementById("result").value;
-                    document.getElementById("result").innerHTML = data + 
-                            "Expected Attempts : " + attempt + " | Total Cost : " + Math.round(total) + " G | Using " + "Grace (" + k + "), Blessing (" + j + "), Protection (" + i + ")"
+    for(i = 0; i <= lvl[3]; i++){
+        for(j = 0; j <= lvl[2]; j++){
+            for(k = 0; k <= lvl[1]; k++){
+				for(x = 0; x <= lvl[7]; x++){
+					var attempt = scanHelper(0, 1, lvl, conf, (k * lvl[4] + j * lvl[5] + i * lvl[6] + x * 0.1));
+					var total = attempt * ((k * prices[5] + j * prices[6] + i * prices[7]) + base);
+					
+					if(indi == 0)
+						total += attempt * (x * prices[9]);
+					else if(indi == 1)
+						total += attempt * (x * prices[8]);
+					
+					if(total < min){
+						var data = document.getElementById("result").value;
+						document.getElementById("result").innerHTML = data + 
+                            "Expected Attempts : " + attempt + " | Total Cost : " + Math.round(total) + " G | Using " + "Grace(" + k + "), Blessing(" + j + "), Protection(" + i + "), Book(" + x + ")"
                             + " per attempt\n";
-                    min = total;
-                }
+						min = total;
+					}
+				}
             }
         }
     }

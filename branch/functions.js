@@ -157,7 +157,8 @@ function go(rarity, level, confidence, prices){
 	console.log(lvl[0]);
 	
     var conf = 1.0 - (confidence/100.0);
-    var arm; var wep; 
+    var arm; var wep;
+	
     if(rarity === "e" || rarity === "E"){ 
         arm = epicarm.get(Number(level));
         wep = epicwep.get(Number(level)); 
